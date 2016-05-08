@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Created by shawn.xu on 16/5/8.
+ * 启动加载数据配置信息
  */
 public class DBInitInfo {
 

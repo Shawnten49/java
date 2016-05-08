@@ -12,6 +12,7 @@ import java.util.TimerTask;
 
 /**
  * Created by shawn.xu on 16/5/8.
+ * 连接池的基础实现
  */
 public class BasePoolConnection implements PoolConnection {
     private DBbean dbBean;             //连接池属性
@@ -49,6 +50,10 @@ public class BasePoolConnection implements PoolConnection {
         checkPool();
     }
 
+    /**
+     * 创建新的connection
+     * @return
+     */
     private Connection newConnction() {
         Connection connection = null;
         if (dbBean != null) {

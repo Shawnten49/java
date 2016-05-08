@@ -9,6 +9,7 @@ import java.util.Map;
 
 /**
  * Created by shawn.xu on 16/5/8.
+ * 数据库操作工具封装
  */
 public class DBhelper {
 

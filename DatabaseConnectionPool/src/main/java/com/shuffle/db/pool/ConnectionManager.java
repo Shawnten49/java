@@ -9,6 +9,7 @@ import java.util.Map;
 
 /**
  * Created by shawn.xu on 16/5/8.
+ * 连接池管理对象
  */
 public class ConnectionManager {
 
@@ -28,6 +29,9 @@ public class ConnectionManager {
         private static ConnectionManager instance = new ConnectionManager();
     }
 
+    /**
+     * 初始化
+     */
     private void init() {
         for (int i=0; i< DBInitInfo.getBeans().size(); i++) {
             DBbean dbBean = DBInitInfo.getBeans().get(i);
@@ -36,6 +40,11 @@ public class ConnectionManager {
         }
     }
 
+    /**
+     *得到连接池
+     * @param poolName
+     * @return
+     */
     public PoolConnection getPool(String poolName) {
         PoolConnection poolConnection = poolMap.get(poolName);
 
@@ -46,18 +55,31 @@ public class ConnectionManager {
         return poolConnection;
     }
 
+    /**
+     * 得到指定连接池的connection
+     * @param poolName
+     * @return
+     */
     public Connection getConnection(String poolName) {
         PoolConnection poolConnection = getPool(poolName);
 
         return  poolConnection.getConnection();
     }
 
+    /**
+     * 释放指定的conneciton
+     * @param poolName
+     * @param connection
+     */
     public void release(String poolName, Connection connection) {
         PoolConnection poolConnection = getPool(poolName);
 
         poolConnection.releaseConnection(connection);
     }
 
+    /**
+     * 销毁所有的连接池
+     */
     public void destory() {
         for (int i=0; i< DBInitInfo.getBeans().size(); i++) {
             DBbean dbBean = DBInitInfo.getBeans().get(i);
@@ -66,6 +88,10 @@ public class ConnectionManager {
         }
     }
 
+    /**
+     * 销毁指定的连接池
+     * @param poolName
+     */
     public void destory(String poolName) {
         getPool(poolName).destory();
     }

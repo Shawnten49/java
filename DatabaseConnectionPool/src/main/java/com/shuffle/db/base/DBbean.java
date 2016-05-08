@@ -2,6 +2,7 @@ package com.shuffle.db.base;
 
 /**
  * Created by shawn.xu on 16/5/8.
+ * 数据库连接属性
  */
 public class DBbean {
     /**
