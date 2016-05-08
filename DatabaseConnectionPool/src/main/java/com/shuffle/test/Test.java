@@ -1,5 +1,14 @@
 package com.shuffle.test;
 
+import com.mysql.cj.mysqlx.protobuf.MysqlxDatatypes;
+import com.shuffle.db.DBhelper;
+import com.shuffle.db.pool.ConnectionManager;
+import com.shuffle.db.pool.PoolConnection;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Author:Shawn.Xu
  * Date:2016/5/7
@@ -8,8 +17,32 @@ package com.shuffle.test;
 public class Test {
 
     public static void main(String[] args) {
-        System.out.println("Just the Begin");
+        for (int i=0; i<100; i++) {
+            Thread t1 = Test.getTread();
+            t1.start();
+        }
 
-        System.out.println("Just the Boss");
+
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
     }
+
+    public static Thread getTread() {
+        return new Thread(new Runnable() {
+            public void run() {
+                String poolName = "mysql01";
+                String sql = "select * from test where id = 1";
+                List<Object> param = new ArrayList<Object>();
+
+                Map<String, Object> map = DBhelper.findSimpleResult(poolName, sql, param);
+
+                System.out.println(map);
+
+            }
+        });
+    }
+
 }
