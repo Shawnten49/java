@@ -14,7 +14,7 @@ import java.util.Map;
 public class Test {
 
     public static void main(String[] args) {
-        for (int i=0; i<100; i++) {
+        for (int i=0; i<200; i++) {
             Thread t1 = Test.getTread();
             t1.start();
         }
@@ -34,9 +34,10 @@ public class Test {
                 String sql = "select * from test where id = 1";
                 List<Object> param = new ArrayList<Object>();
 
+//                System.out.println(System.currentTimeMillis() + ": begin" );
                 Map<String, Object> map = DBhelper.findSimpleResult(poolName, sql, param);
 
-                System.out.println(map);
+//                System.out.println(System.currentTimeMillis() + ":" + map);
 
             }
         });

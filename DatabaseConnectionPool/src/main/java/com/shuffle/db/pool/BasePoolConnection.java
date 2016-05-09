@@ -97,6 +97,17 @@ public class BasePoolConnection implements PoolConnection {
             throw new RuntimeException("ActiveConnection is Full");
         }
 
+        int size = freeConnectionList.size();
+        if (size > 0) {
+            connection = freeConnectionList.get(size-1);
+
+            //移除connection
+            freeConnectionList.remove(size-1);
+        } else {
+            connection = newConnction();
+        }
+
+        /* 此操作，更耗时
         if (freeConnectionList.size() > 0) {
             connection = freeConnectionList.get(0);
 
@@ -104,7 +115,8 @@ public class BasePoolConnection implements PoolConnection {
             freeConnectionList.remove(0);
         } else {
             connection = newConnction();
-        }
+        }*/
+
 
         activeConnectionList.add(connection);
 
@@ -122,10 +134,10 @@ public class BasePoolConnection implements PoolConnection {
             } else {
                 freeConnectionList.add(conn);
 
-                notifyAll(); //唤醒等待线程
+//                notifyAll(); //唤醒等待线程
             }
 
-
+            notifyAll(); //唤醒等待线程
         }
     }
 
