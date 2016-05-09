@@ -34,10 +34,10 @@ public class Test {
                 String sql = "select * from test where id = 1";
                 List<Object> param = new ArrayList<Object>();
 
-//                System.out.println(System.currentTimeMillis() + ": begin" );
+                System.out.println(System.currentTimeMillis() + ": begin" );
                 Map<String, Object> map = DBhelper.findSimpleResult(poolName, sql, param);
 
-//                System.out.println(System.currentTimeMillis() + ":" + map);
+                System.out.println(System.currentTimeMillis() + ":" + map);
 
             }
         });

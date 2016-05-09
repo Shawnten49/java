@@ -53,6 +53,10 @@ public class DBhelper {
             }
         }
 
+        if (pstmt != null) {
+            pstmt.close();
+        }
+
         return map;
     }
 }

@@ -29,8 +29,8 @@ public class BasePoolConnection implements PoolConnection {
         /*freeConnectionList = new ArrayList<>(dbBean.getMaxFreeConnectionCount());
         activeConnectionList = new ArrayList<>(dbBean.getMaxActiveConnectionCount());*/
 
-        freeConnectionList = new Vector<>(dbBean.getMaxFreeConnectionCount());
-        activeConnectionList = new Vector<>(dbBean.getMaxActiveConnectionCount());
+        freeConnectionList = new Vector<Connection>(dbBean.getMaxFreeConnectionCount());
+        activeConnectionList = new Vector<Connection>(dbBean.getMaxActiveConnectionCount());
 
         init();
     }
@@ -86,7 +86,8 @@ public class BasePoolConnection implements PoolConnection {
         int waitTimes = 0;
         while (activeConnectionList.size() >= dbBean.getMaxActiveConnectionCount() && waitTimes<10) {
             try {
-                wait(10);
+                wait(20);
+//                Thread.currentThread().sleep(20);
                 waitTimes++;
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -94,6 +95,7 @@ public class BasePoolConnection implements PoolConnection {
         }
 
         if (activeConnectionList.size() >= dbBean.getMaxActiveConnectionCount()) {
+            printf("ALL");
             throw new RuntimeException("ActiveConnection is Full");
         }
 
@@ -131,13 +133,17 @@ public class BasePoolConnection implements PoolConnection {
             if (freeConnectionList.size() >= dbBean.getMaxFreeConnectionCount()) {
                 closeConnection(conn);
                 printf("close");
+
+//                notifyAll(); //唤醒等待线程
             } else {
                 freeConnectionList.add(conn);
 
 //                notifyAll(); //唤醒等待线程
             }
 
-            notifyAll(); //唤醒等待线程
+//            notifyAll(); //唤醒等待线程  唤醒频率过快,压力大时,容易:ActiveConnection is Full
+
+            notify();//唤醒单个线程,因为也只释放了一个连接
         }
     }
 
@@ -175,7 +181,7 @@ public class BasePoolConnection implements PoolConnection {
     }
 
     public void checkPool() {
-        if (dbBean.isCheckPool()) {
+        if (dbBean.isIdle()) {
             new Timer().schedule(new TimerTask() {
                 @Override
                 public void run() {

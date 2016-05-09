@@ -51,19 +51,22 @@ public class DBbean {
     private int maxActiveConnectionCount = 10;
 
     /**
-     * log用的
+     * 启动空闲监控
      */
-    private boolean isCheckPool = true;
+    private boolean isIdle = true;
 
-//    private int maxIdleTime;
+    /**
+     * 空闲时间(超过时间,释放)
+     */
+    private int maxIdleTime = 10;
 
 
-    public boolean isCheckPool() {
-        return isCheckPool;
+    public boolean isIdle() {
+        return isIdle;
     }
 
-    public void setCheckPool(boolean checkPool) {
-        isCheckPool = checkPool;
+    public void setIdle(boolean idle) {
+        isIdle = idle;
     }
 
     public String getPoolName() {
