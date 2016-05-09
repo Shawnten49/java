@@ -1,9 +1,6 @@
 package com.shuffle.test;
 
-import com.mysql.cj.mysqlx.protobuf.MysqlxDatatypes;
 import com.shuffle.db.DBhelper;
-import com.shuffle.db.pool.ConnectionManager;
-import com.shuffle.db.pool.PoolConnection;
 
 import java.util.ArrayList;
 import java.util.List;

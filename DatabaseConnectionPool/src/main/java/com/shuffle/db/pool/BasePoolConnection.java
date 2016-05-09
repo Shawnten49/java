@@ -5,10 +5,10 @@ import com.shuffle.db.base.DBbean;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.Vector;
 
 /**
  * Created by shawn.xu on 16/5/8.
@@ -25,8 +25,12 @@ public class BasePoolConnection implements PoolConnection {
     public BasePoolConnection(DBbean dbBean) {
         this.dbBean = dbBean;
 
-        freeConnectionList = new ArrayList<Connection>(dbBean.getMaxFreeConnectionCount());
-        activeConnectionList = new ArrayList<Connection>(dbBean.getMaxActiveConnectionCount());
+        /** list 线程不安全，有同步问题**/
+        /*freeConnectionList = new ArrayList<>(dbBean.getMaxFreeConnectionCount());
+        activeConnectionList = new ArrayList<>(dbBean.getMaxActiveConnectionCount());*/
+
+        freeConnectionList = new Vector<>(dbBean.getMaxFreeConnectionCount());
+        activeConnectionList = new Vector<>(dbBean.getMaxActiveConnectionCount());
 
         init();
     }
@@ -82,7 +86,7 @@ public class BasePoolConnection implements PoolConnection {
         int waitTimes = 0;
         while (activeConnectionList.size() >= dbBean.getMaxActiveConnectionCount() && waitTimes<10) {
             try {
-                wait(100);
+                wait(10);
                 waitTimes++;
             } catch (InterruptedException e) {
                 e.printStackTrace();

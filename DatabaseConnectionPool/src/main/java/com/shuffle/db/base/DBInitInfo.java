@@ -15,7 +15,7 @@ public class DBInitInfo {
     static {
         DBbean dBbean = new DBbean();
         dBbean.setPoolName("mysql01");
-        dBbean.setDriverName("com.mysql.cj.jdbc.Driver");
+        dBbean.setDriverName("com.mysql.jdbc.Driver");
         dBbean.setUrl("jdbc:mysql://localhost:3306/shawn?useSSL=false");
         dBbean.setUsername("root");
         dBbean.setPassword("root");
