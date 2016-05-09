@@ -25,8 +25,8 @@ public class DBhelper {
 
         ConnectionManager.getInstance().getPool(poolName).printf("before");
         ConnectionManager.getInstance().release(poolName, connection);
-
         ConnectionManager.getInstance().getPool(poolName).printf("end");
+
         return  map;
     }
 
@@ -52,6 +52,7 @@ public class DBhelper {
                 map.put(cols_name, cols_value);
             }
         }
+
         return map;
     }
 }
