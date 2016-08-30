@@ -3,8 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.shuffle.study</groupId>
   <artifactId>log4j</artifactId>
-  <packaging>war</packaging>
+  <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
+  <modules>
+    <module>../log4jserver</module>
+  </modules>
   <name>log4j Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
@@ -25,3 +28,5 @@
     <finalName>log4j</finalName>
   </build>
 </project>
+
+
