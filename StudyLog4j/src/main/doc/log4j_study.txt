@@ -38,6 +38,9 @@ http://www.tuicool.com/articles/jMZJVr
 <2.Spring+Log4j+ActiveMQ
 http://www.linuxidc.com/Linux/2015-12/126163.htm
 
+ActiveMQ
+ 双击activemq.bat启动,然后打开浏览器，输入地址：http://localhost:8161进入管理页面，用户名admin，密码admin：
+
 <3.log4j+Kafka
 http://www.linuxidc.com/Linux/2015-12/126172.htm
 
