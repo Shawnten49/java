@@ -12,7 +12,12 @@ import org.apache.log4j.xml.DOMConfigurator;
 public class ClientToLog4j1 {
     //单客户端模拟
     public static void main(String[] args) {
+        new ClientToLog4j1().testLog();
+    }
+
+    public void testLog() {
         String propertiesPath = ClientToLog4j1.class.getClassLoader().getResource("client1.properties").getPath();
+        System.out.println("load propertiesPath:" + propertiesPath);
         if(propertiesPath.endsWith(".xml")) {
             DOMConfigurator.configure(propertiesPath);
         } else {
@@ -20,26 +25,21 @@ public class ClientToLog4j1 {
         }
         Logger log = Logger.getLogger(ClientToLog4j1.class);
 
+        //开始循环写日志
         int count = 0;
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         while (true) {
-           try {
+          /* try {
                Thread.sleep(1);
            } catch (InterruptedException e) {
                e.printStackTrace();
-           }
-           log.info("this is ===client1 :: count:" + count + ";" + System.currentTimeMillis());
+           }*/
+            log.info("this is ===client1 :: count:" + count + ";" + System.currentTimeMillis());
 
-           count++;
-           if (count>10000) {
-               break;
-           }
-       }
-
+            count++;
+            if (count>10000) {
+                break;
+            }
+        }
     }
 
 }

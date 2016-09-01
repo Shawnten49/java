@@ -33,13 +33,13 @@ public class ClientToLog4j2 {
 
 
     public void doTest() {
-          /*  String propertiesPath = ClientToLog4j2.class.getClassLoader().getResource("client" + index + ".properties").getPath();
+            String propertiesPath = ClientToLog4j2.class.getClassLoader().getResource("client" + index + ".properties").getPath();
             System.out.println("-----2---load:" + propertiesPath);
             if(propertiesPath.endsWith(".xml")) {
                 DOMConfigurator.configure(propertiesPath);
             } else {
                 PropertyConfigurator.configure(propertiesPath);
-            }*/
+            }
 
         Logger log = Logger.getLogger(ClientToLog4j2.class);
 
