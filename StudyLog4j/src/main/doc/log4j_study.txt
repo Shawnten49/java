@@ -27,6 +27,27 @@ http://www.codeceo.com/article/log4j-usage.html
 http://blog.csdn.net/niuma1024/article/details/51362606
 http://www.cnblogs.com/ITtangtang/p/3926665.html
 
+appender:
+常规本地:
+org.apache.log4j.ConsoleAppender（控制台），
+org.apache.log4j.FileAppender（文件），
+org.apache.log4j.DailyRollingFileAppender（每天产生一个日志文件），
+org.apache.log4j.RollingFileAppender（文件大小到达指定尺寸的时候产生一个新的文件），
+org.apache.log4j.WriterAppender（将日志信息以流格式发送到任意指定的地方）
+
+远程：
+org.apache.log4j.net.SocketAppender
+org.apache.log4j.net.JMSAppender
+org.apache.log4j.net.SMTPAppender
+
+jdbc:
+org.apache.log4j.jdbc.JDBCAppender
+
+自定义appender：
+
+
+
+
 
 2.分布式部署
 <1.自带的SimpleSocketServer
@@ -43,6 +64,7 @@ ActiveMQ
 
 <3.log4j+Kafka
 http://www.linuxidc.com/Linux/2015-12/126172.htm
+http://www.cnblogs.com/likehua/p/3999538.html
 
 <4.log4j+mongodb
 http://www.tuicool.com/articles/ZjENFbR

@@ -8,6 +8,7 @@
   <modules>
     <module>../log4jSocket</module>
     <module>../log4jActiveMQ</module>
+    <module>../log4jKafka</module>
   </modules>
   <name>log4j Maven Webapp</name>
   <url>http://maven.apache.org</url>
