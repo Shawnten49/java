@@ -1,0 +1,19 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.apache.ibatis.submitted.rounding.Mapper">
+        <insert id="insertSuccessSecKill" >
+              INSERT INTO success_killed (seckill_id, user_phone, stat, create_time)
+              VALUES (secKillID, userPhone, 0, NOW())
+        </insert>
+
+        <select id="queryByIDWithSecKill">
+                SELECT *
+                FROM success_killed sk
+                INNER JOIN seckill s ON sk.seckill_id = s.seckill_id
+                WHERE sk.seckill_id = seckillID
+                AND sk.user_phone = userPhone
+        </select>
+
+</mapper>
