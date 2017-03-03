@@ -4,16 +4,25 @@
 
 <mapper namespace="org.apache.ibatis.submitted.rounding.Mapper">
         <insert id="insertSuccessSecKill" >
-              INSERT INTO success_killed (seckill_id, user_phone, stat, create_time)
-              VALUES (secKillID, userPhone, 0, NOW())
+              INSERT ignore INTO success_killed (seckill_id, user_phone, stat, create_time)
+              VALUES (#{secKillID}, #{userPhone}, 0, NOW())
         </insert>
 
-        <select id="queryByIDWithSecKill">
-                SELECT *
+        <select id="queryByIDWithSecKill" resultType="com.shuffle.entity.SuccessSecKill">
+                SELECT
+                  sk.seckill_id,
+                  sk.user_phone,
+                  sk.stat,
+                  sk.create_time,
+                  s.seckill_id "secKill.seckill_id",
+                  s.name "secKill.name",
+                  s.start_time "secKill.start_time",
+                  s.end_time "secKill.end_time",
+                  s.create_time "secKill.create_time"
                 FROM success_killed sk
                 INNER JOIN seckill s ON sk.seckill_id = s.seckill_id
-                WHERE sk.seckill_id = seckillID
-                AND sk.user_phone = userPhone
+                WHERE sk.seckill_id = #{seckillID}
+                AND sk.user_phone = #{userPhone}
         </select>
 
 </mapper>

@@ -1,6 +1,7 @@
 package com.shuffle.dao;
 
 import com.shuffle.entity.SecKill;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 import java.util.List;
@@ -18,9 +19,10 @@ public interface SecKillDao {
      * @param killTime
      * @return 更新影响的行数
      */
-    int reduceNumber(long secKillID, Date killTime);
+    int reduceNumber(@Param("secKillID")long secKillID, @Param("killTime")Date killTime);
 
-    List<SecKill> queryAll(int offset, int limit);
+    List<SecKill> queryAll(@Param("offset")int offset, @Param("limit")int limit);
 
-    SecKill queryByID(int secKillID);
+    SecKill queryByID(long secKillID);
 }
+

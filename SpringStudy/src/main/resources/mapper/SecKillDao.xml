@@ -22,6 +22,6 @@
     <select id="queryAll" resultType="com.shuffle.entity.SecKill">
         select seckill_id,name,number,start_time,end_time,create_time
         from seckill
-        limit ${limit} offset ${offset}
+        limit #{limit} offset #{offset}
     </select>
 </mapper>

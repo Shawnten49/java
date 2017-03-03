@@ -1,6 +1,7 @@
 package com.shuffle.dao;
 
 import com.shuffle.entity.SuccessSecKill;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * Author:Shawn.Xu
@@ -15,7 +16,7 @@ public interface SuccessSecKillDao {
      * @param userPhone
      * @return 插入返回的行数
      */
-    int insertSuccessSecKill(long secKillID, long userPhone);
+    int insertSuccessSecKill(@Param("secKillID")long secKillID, @Param("userPhone")long userPhone);
 
-    SuccessSecKill queryByIDWithSecKill(long seckillID, long userPhone);
+    SuccessSecKill queryByIDWithSecKill(@Param("seckillID")long seckillID, @Param("userPhone")long userPhone);
 }
