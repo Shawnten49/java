@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Author:Shawn.Xu
@@ -24,5 +25,7 @@ public interface SecKillDao {
     List<SecKill> queryAll(@Param("offset")int offset, @Param("limit")int limit);
 
     SecKill queryByID(long secKillID);
+
+    void killByProcedure(Map<String, Object> map);
 }
 

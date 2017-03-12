@@ -24,5 +24,5 @@ public interface SeckillService {
             throws RepeatKillException, SeckillCloseException, SeckillException;
 
 
-
+    SeckillExecution executeSeckillByProcedure(long seckillID, long userPhone, String md5);
 }

@@ -1,5 +1,7 @@
 package com.shuffle.service;
 
+import com.shuffle.dto.Exposer;
+import com.shuffle.dto.SeckillExecution;
 import com.shuffle.entity.SecKill;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,7 +46,24 @@ public class SeckillServiceTest {
 
     @Test
     public void executeSeckill() throws Exception {
+        Long seckillId=10000L;
+        Long userPhone=13348970748L;
+        String md5="0ef23feafa56d2384d71837eba85646f";
+        SeckillExecution seckillExecution=seckillService.executeSeckill(seckillId,userPhone,md5);
+        logger.info(seckillExecution.getSeckillId()+","+seckillExecution.getStateInfo()+","+seckillExecution.getSuccessSecKill());
+    }
 
+    @Test
+    public void executeSeckillProcedure() throws Exception {
+        long seckillId=1002L;
+        long phone=1233347;
+        Exposer exposer=seckillService.exportSeckillUrl(seckillId);
+        logger.info("----->" + exposer);
+        if(exposer.isExposed()){
+            String md5=exposer.getMd5();
+            SeckillExecution sekillExecution= seckillService.executeSeckillByProcedure(seckillId,phone,md5);
+            logger.info("------>" + sekillExecution.getStateInfo());
+        }
     }
 
 }

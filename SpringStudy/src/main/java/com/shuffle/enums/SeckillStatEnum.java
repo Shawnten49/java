@@ -7,8 +7,8 @@ public enum SeckillStatEnum {
     SUCCESS(1,"秒杀成功"),
     END(0,"秒杀结束"),
     REPEAT_KILL(-1,"重复秒杀"),
-    INNER_ERROR(-2,"内部错误");
-
+    INNER_ERROR(-2,"内部错误"),
+    DATE_REWRITE(-3,"数据错误");
     private int stat;
 
     private String statMsg;

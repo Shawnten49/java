@@ -15,11 +15,10 @@ public class SeckillExecution {
 
     private SuccessSecKill successSecKill;
 
-    public SeckillExecution(long seckillId, int state, String stateInfo, SuccessSecKill successSecKill) {
+    public SeckillExecution(long seckillId, SeckillStatEnum state) {
         this.seckillId = seckillId;
-        this.state = state;
-        this.stateInfo = stateInfo;
-        this.successSecKill = successSecKill;
+        this.state = state.getStat();
+        this.stateInfo = state.getStatMsg();
     }
 
     public SeckillExecution(long seckillId, SeckillStatEnum state, SuccessSecKill successSecKill) {
